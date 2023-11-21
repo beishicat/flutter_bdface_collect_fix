@@ -1,6 +1,7 @@
 # flutter_bdface_collect
 
 a baidu face offline collect plugin. Only Android and IOS platforms are supported. 【armeabi-v7a、arm64-v8a】
+此 fork 仓库更改了 build.gradle 中的 minSdkVersion
 
 百度人脸离线采集插件，只支持安卓和iOS。【armeabi-v7a、arm64-v8a】
 
