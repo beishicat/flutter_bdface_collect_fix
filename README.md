@@ -7,6 +7,7 @@
 
 # PS: SDK only support armeabi-v7a、arm64-v8a, if want x86, Please select [old-sdk](https://github.com/fluttercandies/flutter_bdface_collect/tree/old-sdk)
 # PS: SDK 只支持 armeabi-v7a、arm64-v8a, 如果想使用 x86, 请选择 [old-sdk](https://github.com/fluttercandies/flutter_bdface_collect/tree/old-sdk)
+# 警告⚠️: 在使用之前请在百度人脸识别的后台创建完应用，并填写完成相关的资料。
 
 ## SDK Version
 | Platform | Version |
@@ -18,24 +19,28 @@
 
 PS：已注释隐私授权检查，故使用前请自行检查授权
 
-### Android
-在 Android 项目的`app/src/main/assets` 目录下放入百度离线采集SDK的Android授权文件，文件名固定为 `idl-license.face-android`
-SDK 会校验 apk 签名，请使用申请授权相符的签名证书
-### iOS
+### 授权文件
+    - Android
+        在 Android 项目的`app/src/main/assets` 目录下放入百度离线采集SDK的Android授权文件，文件名固定为 `idl-license.face-android`
+        SDK 会校验 apk 签名，请使用申请授权相符的签名证书
+    - iOS
 
-在 `Info.plist` 的 `dict` 标签内添加以下内容
-```xml
-<key>NSCameraUsageDescription</key>
-<string>使用相机</string>
-```
-在 iOS 项目的 `Runner` 目录下放入百度离线采集SDK的iOS授权文件，文件名固定为 `idl-license.face-ios`，并将文件加入资源
-![example](https://raw.githubusercontent.com/fluttercandies/flutter_bdface_collect/main/doc/QQ20210616-175934.jpg)
+        在 `Info.plist` 的 `dict` 标签内添加以下内容
+        ```xml
+        <key>NSCameraUsageDescription</key>
+        <string>使用相机</string>
+        ```
+        在 iOS 项目的 `Runner` 目录下放入百度离线采集SDK的iOS授权文件，文件名固定为 `idl-license.face-ios`，并将文件加入资源
+        ![example](https://raw.githubusercontent.com/fluttercandies/flutter_bdface_collect/main/doc/QQ20210616-175934.jpg)
+
+    >注意：在百度人脸识别应用和项目创建完成之后，授权文件就在给你下载的 demo 代码里面。
 
 ## Usage
 
 ### Init 初始化
 ```dart 
     late var licenseId;
+    // 这里的 licenseId 就是你在后台创建项目的时候填入的`授权标识`然后在分别加上 `-face-android` 和 `-face-ios` 后缀
     if (Platform.isAndroid) licenseId = "demo-face-android";
     else if (Platform.isIOS) licenseId = "demo-face-ios";
     print('开始初始化');
