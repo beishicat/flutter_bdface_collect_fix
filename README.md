@@ -20,20 +20,19 @@
 PS：已注释隐私授权检查，故使用前请自行检查授权
 
 ### 授权文件
-    - Android
-        在 Android 项目的`app/src/main/assets` 目录下放入百度离线采集SDK的Android授权文件，文件名固定为 `idl-license.face-android`
-        SDK 会校验 apk 签名，请使用申请授权相符的签名证书
-    - iOS
+- Android
+    在 Android 项目的`app/src/main/assets` 目录下放入百度离线采集SDK的Android授权文件，文件名固定为 `idl-license.face-android`
+    SDK 会校验 apk 签名，请使用申请授权相符的签名证书
+- iOS
+    在 `Info.plist` 的 `dict` 标签内添加以下内容
+    ```xml
+    <key>NSCameraUsageDescription</key>
+    <string>使用相机</string>
+    ```
+    在 iOS 项目的 `Runner` 目录下放入百度离线采集SDK的iOS授权文件，文件名固定为 `idl-license.face-ios`，并将文件加入资源
+    ![example](https://raw.githubusercontent.com/fluttercandies/flutter_bdface_collect/main/doc/QQ20210616-175934.jpg)
 
-        在 `Info.plist` 的 `dict` 标签内添加以下内容
-        ```xml
-        <key>NSCameraUsageDescription</key>
-        <string>使用相机</string>
-        ```
-        在 iOS 项目的 `Runner` 目录下放入百度离线采集SDK的iOS授权文件，文件名固定为 `idl-license.face-ios`，并将文件加入资源
-        ![example](https://raw.githubusercontent.com/fluttercandies/flutter_bdface_collect/main/doc/QQ20210616-175934.jpg)
-
-    >注意：在百度人脸识别应用和项目创建完成之后，授权文件就在给你下载的 demo 代码里面。
+>注意：在百度人脸识别应用和项目创建完成之后，授权文件就在给你下载的 demo 代码里面。
 
 ## Usage
 
@@ -41,6 +40,7 @@ PS：已注释隐私授权检查，故使用前请自行检查授权
 ```dart 
     late var licenseId;
     // 这里的 licenseId 就是你在后台创建项目的时候填入的`授权标识`然后在分别加上 `-face-android` 和 `-face-ios` 后缀
+    // 例如你的授权标识是 `demo`，那么完整的 licenseId 就是下面的这两种情况
     if (Platform.isAndroid) licenseId = "demo-face-android";
     else if (Platform.isIOS) licenseId = "demo-face-ios";
     print('开始初始化');
